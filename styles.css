@@ -10,18 +10,23 @@ body{
 }
 
 header{
+  text-align: center;
   font-size: 56px;
   font-weight: 700;
   color: #75B79E;
+  margin-top: 40px;
 }
 
-main{
+.deck{
   display: flex;
-  width: 90%;
-  height: 100%;
+  flex-wrap: wrap;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 50px 100px 50px 100px;
 }
 
-main div{
+.card{
   width: 120px;
   height: 150px;
   background-color: #A7E9AF;
@@ -33,7 +38,7 @@ main div{
   margin: 15px
 }
 
-main img{
+.card img{
   width: 100px;
   height: 100px;
 
