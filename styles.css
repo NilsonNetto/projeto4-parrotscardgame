@@ -7,6 +7,7 @@
 body{
   background-color: #EEF9BF;
   font-family: 'Roboto', sans-serif;
+  width: 100vw;
 }
 
 header{
@@ -20,7 +21,6 @@ header{
 .deck{
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
   justify-content: space-around;
   align-items: flex-start;
   padding: 50px 100px 50px 100px;
@@ -66,8 +66,8 @@ header{
 }
 
 .fireworks{
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vw;
   position: fixed;
   top: 0;
   left: 0;

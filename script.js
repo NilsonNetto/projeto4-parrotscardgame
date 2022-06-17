@@ -17,7 +17,9 @@ let arrayInicial = [
 
 let jogadas = 0;
 
-let qtdadecards = prompt('Com quantas cartas quer jogar?');
+let qtdadecards = prompt(
+  'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Estar entre 4 e 14'
+);
 startGame();
 
 function startGame() {
@@ -31,7 +33,9 @@ function startGame() {
     isNaN(qtdadecards) ||
     qtdadecards % 2 === 1
   ) {
-    qtdadecards = prompt('Com quantas cartas quer jogar?');
+    qtdadecards = prompt(
+      'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Estar entre 4 e 14'
+    );
   }
 
   for (let i = 0; arrayJogo.length < qtdadecards; i++) {
@@ -55,14 +59,26 @@ function startGame() {
 }
 
 function clickcard(element) {
-  jogadas++;
-  let front = element.querySelector('.front-face');
-  let back = element.querySelector('.back-face');
-  front.classList.add('front-face-turn');
-  back.classList.add('back-face-turn');
-  element.classList.add('click');
   let cardClicado = document.querySelectorAll('.card.click');
-  if (cardClicado.length >= 2) {
+  if (cardClicado[0] === undefined) {
+    let front = element.querySelector('.front-face');
+    let back = element.querySelector('.back-face');
+    front.classList.add('front-face-turn');
+    back.classList.add('back-face-turn');
+    element.classList.add('click');
+  } else if (cardClicado[1] === undefined) {
+    let front = element.querySelector('.front-face');
+    let back = element.querySelector('.back-face');
+    front.classList.add('front-face-turn');
+    back.classList.add('back-face-turn');
+    element.classList.add('click');
+    verifyMatch();
+  }
+}
+
+function verifyMatch() {
+  let cardClicado = document.querySelectorAll('.card.click');
+  if (cardClicado.length === 2) {
     if (cardClicado[0].innerHTML === cardClicado[1].innerHTML) {
       match();
     } else {
@@ -72,6 +88,7 @@ function clickcard(element) {
 }
 
 function match() {
+  jogadas += 2;
   let cardClicado = document.querySelectorAll('.card.click');
   cardClicado[0].classList.remove('click');
   cardClicado[1].classList.remove('click');
@@ -81,6 +98,7 @@ function match() {
 }
 
 function notMatch() {
+  jogadas += 2;
   let cardClicado = document.querySelectorAll('.card.click');
   let = frontTurned = document.querySelectorAll('.click .front-face-turn');
   let = backTurned = document.querySelectorAll('.click .back-face-turn');
