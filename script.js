@@ -15,10 +15,12 @@ let arrayInicial = [
   'bobrossparrot.gif'
 ];
 
+let timerOn = false;
+let seconds = 0;
+let minutes = 0;
 let jogadas = 0;
-
 let qtdadecards = prompt(
-  'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Estar entre 4 e 14'
+  'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
 );
 startGame();
 
@@ -34,7 +36,7 @@ function startGame() {
     qtdadecards % 2 === 1
   ) {
     qtdadecards = prompt(
-      'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Estar entre 4 e 14'
+      'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
     );
   }
 
@@ -73,6 +75,10 @@ function clickcard(element) {
     back.classList.add('back-face-turn');
     element.classList.add('click');
     verifyMatch();
+  }
+  if (timerOn === false) {
+    timerOn = true;
+    setInterval(timer, 1000);
   }
 }
 
@@ -120,14 +126,30 @@ function verificaFinal() {
 }
 
 function newGame() {
-  let startAgain = prompt('Deseja iniciar um novo jogo?');
+  let startAgain = prompt('Deseja iniciar um novo jogo? Digite "sim" ou "não"');
   while (startAgain !== 'sim' && startAgain !== 'não') {
-    startAgain = prompt('Deseja iniciar um novo jogo?');
+    startAgain = prompt('Deseja iniciar um novo jogo Digite "sim" ou "não"?');
   }
   if (startAgain === 'sim') {
     document.querySelector('.fireworks').classList.remove('show');
     qtdadecards = 0;
     startGame();
+  }
+}
+
+function timer() {
+  let clock = document.querySelector('.timer');
+  if (seconds < 9) {
+    seconds++;
+    clock.innerHTML = `${minutes}:0${seconds}`;
+  } else if (seconds <= 59) {
+    seconds++;
+    clock.innerHTML = `${minutes}:${seconds}`;
+  }
+  if (seconds === 60) {
+    seconds = 0;
+    minutes++;
+    clock.innerHTML = `${minutes}:0${seconds}`;
   }
 }
 
