@@ -21,7 +21,7 @@ header{
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
   padding: 50px 100px 50px 100px;
 }
