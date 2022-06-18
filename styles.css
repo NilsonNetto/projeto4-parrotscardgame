@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
+body {
   background-color: #EEF9BF;
   font-family: 'Roboto', sans-serif;
 }
 
-header{
+header {
   text-align: center;
   font-size: 56px;
   font-weight: 700;
@@ -17,22 +17,22 @@ header{
   margin-top: 40px;
 }
 
-.deck{
+.deck {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-start;
   margin: 40px 50px 50px 50px;
 }
 
-.card{
+.card {
   width: 120px;
   height: 150px;
   margin: 15px;
   position: relative;
 }
 
-.face{
+.face {
   width: 120px;
   height: 150px;
   position: absolute;
@@ -47,25 +47,25 @@ header{
   cursor: pointer;
 }
 
-.card img{
+.card img {
   width: 100px;
   height: 100px;
 
 }
 
-.back-face{
+.back-face {
   transform: rotatey(180deg);
 }
 
-.back-face-turn{
+.back-face-turn {
   transform: rotatey(0);
 }
 
-.front-face-turn{
+.front-face-turn {
   transform: rotatey(-180deg);
 }
 
-.fireworks{
+.fireworks {
   width: 100vw;
   height: 100vw;
   position: fixed;
@@ -75,11 +75,11 @@ header{
   display: none;
 }
 
-.show{
+.show {
   display: initial;
 }
 
-.timer{
+.timer {
   width: 60px;
   height: 25px;
   font-size: 20px;
@@ -87,7 +87,7 @@ header{
   justify-content: center;
   align-items: center;
   position: fixed;
-  left: 15px;
+  right: 15px;
   top: 80px;
   background-color: #A7E9AF;
   color: darkslategray;
@@ -95,9 +95,13 @@ header{
   border-radius: 5px;
 }
 
-@media (max-width: 616px){
+@media screen and (max-width: 616px) {
 
-header{
-  font-size: 36px;
-}
+  header {
+    font-size: 36px;
+  }
+
+  body {
+    width: 100%;
+  }
 }

@@ -15,19 +15,24 @@ let arrayInicial = [
   'bobrossparrot.gif'
 ];
 
-let timerOn = false;
+let timerOn = true;
+let timerStop;
 let seconds = 0;
 let minutes = 0;
+let clock = document.querySelector('.timer');
 let jogadas = 0;
-let qtdadecards = prompt(
+let qtdadecards = Number(prompt(
   'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
-);
+));
 startGame();
 
 function startGame() {
+  clock.innerHTML = '00:00';
+  jogadas = 0;
+  seconds = 0;
+  minutes = 0;
   let deck = document.querySelector('.deck');
   deck.innerHTML = '';
-  jogadas = 0;
   let arrayJogo = [];
   while (
     qtdadecards < 4 ||
@@ -35,9 +40,9 @@ function startGame() {
     isNaN(qtdadecards) ||
     qtdadecards % 2 === 1
   ) {
-    qtdadecards = prompt(
+    qtdadecards = Number(prompt(
       'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
-    );
+    ));
   }
 
   for (let i = 0; arrayJogo.length < qtdadecards; i++) {
@@ -68,6 +73,10 @@ function clickcard(element) {
     front.classList.add('front-face-turn');
     back.classList.add('back-face-turn');
     element.classList.add('click');
+    if (timerOn === true) {
+      timerOn = false;
+      timerStop = setInterval(timer, 1000);
+    }
   } else if (cardClicado[1] === undefined) {
     let front = element.querySelector('.front-face');
     let back = element.querySelector('.back-face');
@@ -75,10 +84,6 @@ function clickcard(element) {
     back.classList.add('back-face-turn');
     element.classList.add('click');
     verifyMatch();
-  }
-  if (timerOn === false) {
-    timerOn = true;
-    setInterval(timer, 1000);
   }
 }
 
@@ -119,18 +124,20 @@ function notMatch() {
 function verificaFinal() {
   let cardsRight = document.querySelectorAll('.match');
   if (cardsRight.length === Number(qtdadecards)) {
+    timerOn = true;
+    clearInterval(timerStop);
     document.querySelector('.fireworks').classList.add('show');
-    alert(`Você ganhou em ${jogadas} jogadas!`);
+    alert(`Você ganhou em ${jogadas} jogadas! Tempo: ${clock.innerHTML}`);
     newGame();
   }
 }
 
 function newGame() {
   let startAgain = prompt('Deseja iniciar um novo jogo? Digite "sim" ou "não"');
-  while (startAgain !== 'sim' && startAgain !== 'não') {
-    startAgain = prompt('Deseja iniciar um novo jogo Digite "sim" ou "não"?');
+  while (startAgain !== 'sim' && startAgain !== 'não' && startAgain !== 'sim ' && startAgain !== 'não ') {
+    startAgain = prompt('Deseja iniciar um novo jogo? Digite "sim" ou "não"');
   }
-  if (startAgain === 'sim') {
+  if (startAgain === 'sim' || startAgain === 'sim ') {
     document.querySelector('.fireworks').classList.remove('show');
     qtdadecards = 0;
     startGame();
@@ -138,19 +145,19 @@ function newGame() {
 }
 
 function timer() {
-  let clock = document.querySelector('.timer');
   if (seconds < 9) {
     seconds++;
-    clock.innerHTML = `${minutes}:0${seconds}`;
-  } else if (seconds <= 59) {
+    clock.innerHTML = `0${minutes}:0${seconds}`;
+  } else if (seconds < 60) {
     seconds++;
-    clock.innerHTML = `${minutes}:${seconds}`;
+    clock.innerHTML = `0${minutes}:${seconds}`;
   }
   if (seconds === 60) {
     seconds = 0;
     minutes++;
-    clock.innerHTML = `${minutes}:0${seconds}`;
+    clock.innerHTML = `0${minutes}:0${seconds}`;
   }
+  
 }
 
 // Função para embaralhar Array do jogo
