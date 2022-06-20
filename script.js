@@ -21,9 +21,11 @@ let seconds = 0;
 let minutes = 0;
 let clock = document.querySelector('.timer');
 let jogadas = 0;
-let qtdadecards = Number(prompt(
-  'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
-));
+let qtdadecards = Number(
+  prompt(
+    'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
+  )
+);
 startGame();
 
 function startGame() {
@@ -40,9 +42,11 @@ function startGame() {
     isNaN(qtdadecards) ||
     qtdadecards % 2 === 1
   ) {
-    qtdadecards = Number(prompt(
-      'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
-    ));
+    qtdadecards = Number(
+      prompt(
+        'Com quantas cartas quer jogar? \nO número de cartas deve: \n-Ser um número par\n-Mínimo 4 cartas\n-Máximo 14 cartas'
+      )
+    );
   }
 
   for (let i = 0; arrayJogo.length < qtdadecards; i++) {
@@ -105,7 +109,7 @@ function match() {
   cardClicado[1].classList.remove('click');
   cardClicado[0].classList.add('match');
   cardClicado[1].classList.add('match');
-  verificaFinal();
+  setTimeout(verificaFinal, 500);
 }
 
 function notMatch() {
@@ -134,7 +138,12 @@ function verificaFinal() {
 
 function newGame() {
   let startAgain = prompt('Deseja iniciar um novo jogo? Digite "sim" ou "não"');
-  while (startAgain !== 'sim' && startAgain !== 'não' && startAgain !== 'sim ' && startAgain !== 'não ') {
+  while (
+    startAgain !== 'sim' &&
+    startAgain !== 'não' &&
+    startAgain !== 'sim ' &&
+    startAgain !== 'não '
+  ) {
     startAgain = prompt('Deseja iniciar um novo jogo? Digite "sim" ou "não"');
   }
   if (startAgain === 'sim' || startAgain === 'sim ') {
@@ -157,7 +166,6 @@ function timer() {
     minutes++;
     clock.innerHTML = `0${minutes}:0${seconds}`;
   }
-  
 }
 
 // Função para embaralhar Array do jogo

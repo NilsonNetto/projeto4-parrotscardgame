@@ -65,6 +65,10 @@ header {
   transform: rotatey(-180deg);
 }
 
+.match{
+  pointer-events: none;
+}
+
 .fireworks {
   width: 100vw;
   height: 100vw;
@@ -88,7 +92,7 @@ header {
   align-items: center;
   position: fixed;
   right: 15px;
-  top: 80px;
+  top: 100px;
   background-color: #A7E9AF;
   color: darkslategray;
   border: 2px solid #99CEA8;
